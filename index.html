@@ -98,14 +98,42 @@ tr.cv td.bad{background:var(--warnl);color:var(--warn);font-weight:700}
   <p class="hint">Dias não marcados viram FOLGA para todos automaticamente. Com 6 ou 7 dias abertos, o sistema distribui e reveza as folgas entre as semanas do mês.</p>
  </section>
  <section>
+ 
+<section>
   <h2>4. Feriados</h2>
-  <div class="row"><div><label for="fd">Data do feriado manual</label><input id="fd" type="date"></div><div><label for="fn">Nome</label><input id="fn" placeholder="Ex.: Feriado municipal"></div></div>
-  <div class="row" style="margin-top:8px"><button class="p" id="bBuscaFeriados">Buscar feriados deste mês no banco</button></div>
-  <p class="hint" id="ferMsg">Selecione o mês e o ano da escala e informe o estado e município da empresa. O sistema buscará no banco os feriados nacionais, estaduais e municipais cadastrados para essa localidade.</p>
-  <label>Quem trabalha neste feriado (opcional)</label><div id="fw"></div>
-  <button id="bFer" style="margin-top:8px">Adicionar feriado manual</button><div id="fl"></div>
+
+  <label for="mes">Mês e ano da escala</label>
+  <input type="month" id="mes" aria-label="Mês e ano da escala">
+
+  <div class="row" style="margin-top:12px">
+    <button class="p" id="bBuscaFeriados">Buscar feriados deste mês no banco</button>
+  </div>
+
+  <p class="hint" id="ferMsg">Selecione o mês e o ano, o estado e o município da empresa para consultar os feriados cadastrados.</p>
+
+  <div class="divider"></div>
+
+  <h3>Cadastro manual de feriado</h3>
+  <div class="row">
+    <div>
+      <label for="fd">Data do feriado manual</label>
+      <input id="fd" type="date">
+    </div>
+    <div>
+      <label for="fn">Nome</label>
+      <input id="fn" placeholder="Ex.: Feriado municipal">
+    </div>
+  </div>
+
+  <label>Quem trabalha neste feriado (opcional)</label>
+  <div id="fw"></div>
+
+  <button id="bFer" style="margin-top:8px">Adicionar feriado manual</button>
+  <div id="fl"></div>
+
   <p class="hint">Sem ninguém marcado, a empresa fecha e todos ficam como FERIADO. Marque os funcionários que trabalharão. Ponto facultativo não é tratado automaticamente como feriado obrigatório.</p>
- </section>
+</section>
+
  <section>
   <h2>5. Cargos e equipe mínima</h2>
   <div class="row"><div><label for="rn">Cargo</label><input id="rn" placeholder="Ex.: Caixa"></div><div style="max-width:90px"><label for="rm">Mínimo</label><input id="rm" type="number" min="0" value="1"></div><button class="fit" id="bRole">Adicionar</button></div>
@@ -129,7 +157,7 @@ tr.cv td.bad{background:var(--warnl);color:var(--warn);font-weight:700}
 </div>
 
 <div>
- <div class="bar"><label for="mes" style="margin:0;align-self:center">Mês e ano da escala</label><input type="month" id="mes" aria-label="Mês e ano da escala"><button class="p" id="bGen">Gerar escala</button><button id="bVar">Gerar outra variação</button><button id="bPrint">Imprimir / salvar PDF</button></div>
+<div class="bar"><button class="p" id="bGen">Gerar escala</button><button id="bVar">Gerar outra variação</button><button id="bPrint">Imprimir / salvar PDF</button></div>
  <div id="alerts"></div>
  <section class="sheet" id="out"><div class="empty">Cadastre cargos e funcionários e clique em “Gerar escala”.</div></section>
 </div>
