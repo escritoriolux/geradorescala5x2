@@ -185,7 +185,7 @@ function renderPerfis(){
  $('perf').innerHTML='<option value="">— nova / não salva —</option>'+names.map(n=>`<option ${n===DB.cur?'selected':''}>${esc(n)}</option>`).join('');
 }
 function renderAll(){
- $('nome').value=S.nome;$('uf').value=S.uf||'';carregarCidades(S.cidade||'');if(!$('mes').value)$('mes').value=S.mes||new Date().toISOString().slice(0,7);
+ $('nome').value=S.nome;$('uf').value=S.uf||'';carregarCidades(S.cidade||'');$('mes').value=S.mes||new Date().toISOString().slice(0,7);
  document.querySelectorAll('input[name=h]').forEach(r=>r.checked=+r.value===S.horas);
  $('days').innerHTML=[1,2,3,4,5,6,0].map(d=>`<label><input type="checkbox" value="${d}" ${S.abre.includes(d)?'checked':''}>${NOMES[d].slice(0,3)}</label>`).join('');
  $('roles').innerHTML=S.cargos.map((c,i)=>`<div class="item"><span>${esc(c.n)}<small>mínimo por dia</small></span><input type="number" min="0" value="${c.min}" data-m="${i}" style="width:64px;flex:none" aria-label="Mínimo por dia de ${esc(c.n)}"><button class="x" data-r="${i}" aria-label="Remover cargo">Remover</button></div>`).join('');
@@ -326,6 +326,10 @@ function lerForm(){
  S.abre=[...document.querySelectorAll('#days input:checked')].map(i=>+i.value);
  return S;
 }
+ $('mes').addEventListener('change',()=>{
+ S.mes=$('mes').value;
+ plan=null;
+});
 $('bRole').onclick=()=>{const n=$('rn').value.trim();if(!n)return;if(S.cargos.some(c=>c.n===n))return;
  S.cargos.push({n,min:Math.max(0,+$('rm').value||0)});$('rn').value='';renderAll()};
 $('roles').onclick=e=>{const i=e.target.dataset.r;if(i===undefined)return;const n=S.cargos[i].n;
